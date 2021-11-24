@@ -5,8 +5,8 @@ const bodyParser = require ('body-parser');
 const mysql = require ('mysql');
 const session = require ('express-session');
 const app = express();
-require('dotenv').config();
 
+require('dotenv').config();
 const PORT = process.env.PORT;
 
 //conexion a base de datos
@@ -17,6 +17,7 @@ user:'root',
 password: '',
 database: 'casachina'
 });
+
 
 conn.connect((err)=>{
   if (err) throw err;
