@@ -32,23 +32,20 @@ app.set('view engine', 'hbs');
 app.use('/assets', express.static (__dirname + '/public'));
 
 
+//routes
+app.get('/',(req,res)=>{
+  let sql = "SELECT * FROM articulos WHERE id_productos";
+  let query = conn.query (sql,(err,results)=>{
+    if (err) throw err;
+    res.render ('index',{
+      results:results
+      })
+    }
+  )});
 
 //handlebars
 app.set ('view engine','hbs');
 hbs.registerPartials( __dirname + '/views/partials');
-
-//routes
-app.get('/',(req,res)=>{
-let sql = "SELECT * FROM articulos WHERE id_productos";
-let query = conn.query (sql,(err,results)=>{
-  if (err) throw err;
-  res.render ('index',{
-    results:results
-    })
-  }
-)});
-
-
 
 //middlewares
 app.use(express.json());
