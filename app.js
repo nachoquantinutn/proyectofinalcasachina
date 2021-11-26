@@ -5,22 +5,22 @@ const bodyParser = require ('body-parser');
 // const mysql = require ('mysql');
 const session = require ('express-session');
 const app = express();
+const conn = require("./database/db");
 
 require('dotenv').config();
 const PORT = process.env.PORT;
 
-//conexion a base de datos
-
-//  const conn = mysql.createConnection({ 
-//  host:'localhost',
+// conexion a base de datos
+// const conn = mysql.createConnection({ 
+// host:'localhost',
 // user:'root',
-//  password: '',
+// password: '',
 // database: 'casachina'
-//  });
+// });
 
 // conn.connect((err)=>{
-//   if (err) throw err;
-//   console.log ('conexion extablecida..')
+// if (err) throw err;
+// console.log ('conexion extablecida..')
 // });
 
 app.set('views', path.join (__dirname,'views'));
@@ -31,27 +31,25 @@ app.set('view engine', 'hbs');
 
 app.use('/assets', express.static (__dirname + '/public'));
 
-
-//routes
-app.get('/',(req,res)=>{
-  let sql = "SELECT * FROM articulos WHERE id_productos";
-  let query = conn.query (sql,(err,results)=>{
-    if (err) throw err;
-    res.render ('index',{
-      results:results
-      })
-    }
-  )});
-
 //handlebars
 app.set ('view engine','hbs');
 hbs.registerPartials( __dirname + '/views/partials');
+
+//routes
+app.get('/',(req,res)=>{
+let sql = "SELECT * FROM articulos WHERE id_productos";
+let query = conn.query (sql,(err,results)=>{
+  if (err) throw err;
+  res.render ('index',{
+    results:results
+    })
+  }
+)});
 
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
-app
 //contenido estatico 
 app.use(express.static("public"));
 
