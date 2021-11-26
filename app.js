@@ -2,26 +2,12 @@ const path = require ('path');
 const express = require('express');
 const hbs = require ('hbs');
 const bodyParser = require ('body-parser');
-// const mysql = require ('mysql');
 const session = require ('express-session');
 const app = express();
 const conn = require("./database/db");
 
 require('dotenv').config();
 const PORT = process.env.PORT;
-
-// conexion a base de datos
-// const conn = mysql.createConnection({ 
-// host:'localhost',
-// user:'root',
-// password: '',
-// database: 'casachina'
-// });
-
-// conn.connect((err)=>{
-// if (err) throw err;
-// console.log ('conexion extablecida..')
-// });
 
 app.set('views', path.join (__dirname,'views'));
 app.set('view engine', 'hbs');
