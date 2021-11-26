@@ -21,7 +21,7 @@ app.use('/assets', express.static (__dirname + '/public'));
 app.set ('view engine','hbs');
 hbs.registerPartials( __dirname + '/views/partials');
 
-//routes
+//routes productos
 app.get('/',(req,res)=>{
 let sql = "SELECT * FROM articulos WHERE id_productos";
 let query = conn.query (sql,(err,results)=>{
