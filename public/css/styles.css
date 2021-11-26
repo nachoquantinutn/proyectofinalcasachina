@@ -11516,3 +11516,11 @@ html {
 .tabla1 {
   justify-content: center;
 }
+.input-group .input-group-lg{
+  width: 1rem;
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}

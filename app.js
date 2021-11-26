@@ -32,6 +32,21 @@ let query = conn.query (sql,(err,results)=>{
   }
 )});
 
+//rutas 
+app.get('/index', (req,res)=>{
+  res.render('index');
+});
+
+// Suscripcion 
+app.post('/suscribe', (req, res) => {
+  let data = { id_email: req.body.id_email }
+  let sql = "INSERT INTO correos SET?";
+  let query = conn.query(sql, data, (err, results) => {
+      if (err) throw err;
+      res.redirect('/index');
+  });
+});
+
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
